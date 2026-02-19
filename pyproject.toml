@@ -1,0 +1,13 @@
+[project]
+name = "ascii-art-generator"
+version = "1.0.0"
+description = "CLI tool that converts images to ASCII art"
+requires-python = ">=3.10"
+dependencies = ["Pillow>=10.0.0"]
+
+[project.scripts]
+ascii-art = "ascii_art.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
