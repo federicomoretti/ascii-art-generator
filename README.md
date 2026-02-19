@@ -13,7 +13,7 @@ pip install -e .
 ## Usage
 
 ```bash
-ascii-art <image> [-w WIDTH] [--invert] [--chars CHARS] [--braille]
+ascii-art <image> [-w WIDTH] [--invert] [--chars CHARS] [--braille] [--console-log]
 ```
 
 | Flag | Description | Default |
@@ -23,6 +23,9 @@ ascii-art <image> [-w WIDTH] [--invert] [--chars CHARS] [--braille]
 | `--invert` | Invert brightness (for light backgrounds) | off |
 | `--chars` | Custom character ramp (dark to light) | 70-char default |
 | `--braille` | Use braille characters for higher resolution | off |
+| `--console-log` | Output as colored JavaScript `console.log` statements | off |
+
+`--braille` and `--console-log` can be combined for high-resolution colored braille output in the browser console.
 
 ### Examples
 
@@ -41,6 +44,12 @@ ascii-art photo.png --chars "@#. "
 
 # Braille mode for higher detail
 ascii-art photo.png -w 40 --braille
+
+# Colored output for browser console
+ascii-art photo.png --console-log
+
+# Colored braille for browser console
+ascii-art photo.png --braille --console-log
 
 # Can also run as a Python module
 python -m ascii_art photo.png
