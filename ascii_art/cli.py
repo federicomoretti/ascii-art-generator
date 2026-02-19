@@ -8,7 +8,7 @@ from PIL import UnidentifiedImageError
 from ascii_art.braille_converter import convert_to_braille
 from ascii_art.character_ramp import CharacterRamp
 from ascii_art.converter import convert
-from ascii_art.image_source import BRAILLE_ASPECT_CORRECTION, load_image
+from ascii_art.image_source import load_image
 
 MIN_WIDTH = 10
 MAX_WIDTH = 300
@@ -38,11 +38,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> None:
     args = _parse_args(argv)
 
-    load_kwargs = (
-        {"pixel_scale": (2, 4), "aspect_correction": BRAILLE_ASPECT_CORRECTION}
-        if args.braille
-        else {}
-    )
+    load_kwargs = {"pixel_scale": (2, 4)} if args.braille else {}
 
     try:
         image = load_image(args.image, args.width, **load_kwargs)

@@ -4,7 +4,6 @@ from pathlib import Path
 from PIL import Image
 
 ASPECT_CORRECTION = 0.45
-BRAILLE_ASPECT_CORRECTION = 1.0
 
 
 @dataclass(frozen=True)
