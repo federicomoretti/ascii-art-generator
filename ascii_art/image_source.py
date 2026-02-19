@@ -4,6 +4,7 @@ from pathlib import Path
 from PIL import Image
 
 ASPECT_CORRECTION = 0.45
+BRAILLE_ASPECT_CORRECTION = 1.0
 
 
 @dataclass(frozen=True)
@@ -13,14 +14,21 @@ class GrayscaleImage:
     height: int
 
 
-def load_image(path: Path, target_width: int) -> GrayscaleImage:
+def load_image(
+    path: Path,
+    target_width: int,
+    *,
+    pixel_scale: tuple[int, int] = (1, 1),
+    aspect_correction: float = ASPECT_CORRECTION,
+) -> GrayscaleImage:
     image = Image.open(path).convert("RGB")
-    target_height = int(image.height / image.width * target_width * ASPECT_CORRECTION)
-    image = image.resize((target_width, target_height), Image.Resampling.LANCZOS)
+    scaled_width = target_width * pixel_scale[0]
+    scaled_height = int(image.height / image.width * target_width * aspect_correction) * pixel_scale[1]
+    image = image.resize((scaled_width, scaled_height), Image.Resampling.LANCZOS)
     image = image.convert("L")
 
     return GrayscaleImage(
         pixels=list(image.getdata()),
-        width=target_width,
-        height=target_height,
+        width=scaled_width,
+        height=scaled_height,
     )

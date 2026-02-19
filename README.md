@@ -13,7 +13,7 @@ pip install -e .
 ## Usage
 
 ```bash
-ascii-art <image> [-w WIDTH] [--invert] [--chars CHARS]
+ascii-art <image> [-w WIDTH] [--invert] [--chars CHARS] [--braille]
 ```
 
 | Flag | Description | Default |
@@ -22,6 +22,7 @@ ascii-art <image> [-w WIDTH] [--invert] [--chars CHARS]
 | `-w, --width` | Output width in characters, clamped to [10, 300] | terminal width |
 | `--invert` | Invert brightness (for light backgrounds) | off |
 | `--chars` | Custom character ramp (dark to light) | 70-char default |
+| `--braille` | Use braille characters for higher resolution | off |
 
 ### Examples
 
@@ -37,6 +38,9 @@ ascii-art photo.png --invert
 
 # Use a custom character ramp
 ascii-art photo.png --chars "@#. "
+
+# Braille mode for higher detail
+ascii-art photo.png -w 40 --braille
 
 # Can also run as a Python module
 python -m ascii_art photo.png
